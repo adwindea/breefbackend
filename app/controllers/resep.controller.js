@@ -12,7 +12,8 @@ exports.create = (req, res) => {
     //Create resep
     const resep = new Resep({
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        imgname: req.body.imgname
     });
     //Save in db
     resep
@@ -26,23 +27,41 @@ exports.create = (req, res) => {
             });
         });
 };
+
+
 exports.upload = async (req, res) => {
-    try {
-      await uploadFile(req, res);
-  
-      if (req.file == undefined) {
-        return res.status(400).send({ message: "Please upload a file!" });
-      }
-  
-      res.status(200).send({
-        message: "Uploaded the file successfully: " + req.file.originalname,
-      });
-    } catch (err) {
-      res.status(500).send({
-        message: `Could not upload the file: ${req.file.originalname}. ${err}`,
-      });
+  try {
+    await uploadFile(req, res);
+
+    console.log(req.file);
+    if (req.file == undefined) {
+      return res.send(`You must select a file.`);
     }
-  };
+
+    return res.send(req.file);
+  } catch (error) {
+    console.log(error);
+    return res.send(`Error when trying upload image: ${error}`);
+  }
+};
+
+// exports.upload = async (req, res) => {
+//     try {
+//       await uploadFile(req, res);
+  
+//       if (req.file == undefined) {
+//         return res.status(400).send({ message: "Please upload a file!" });
+//       }
+  
+//       res.status(200).send({
+//         message: "Uploaded the file successfully: " + req.file.originalname,
+//       });
+//     } catch (err) {
+//       res.status(500).send({
+//         message: `Could not upload the file: ${req.file.originalname}. ${err}`,
+//       });
+//     }
+//   };
 
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
