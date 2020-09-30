@@ -3,23 +3,14 @@ module.exports = app => {
 
     var router = require("express").Router();
 
-    // Create a new Tutorial
+    // Create a new Resep
     router.post("/", resep.create);
 
-    // Retrieve all Tutorials
+    // Retrieve all Resep
     router.get("/", resep.findAll);
 
-    // Retrieve a single Tutorial with id
-    // router.get("/:id", resep.findOne);
-
-    // Update a Tutorial with id
-    // router.put("/:id", resep.update);
-
-    // Delete a Tutorial with id
-    // router.delete("/:id", resep.delete);
-
-    // Create a new Tutorial
-    // router.delete("/", resep.deleteAll);
+    // Upload Image
+    router.post("/upload", resep.upload);
 
     app.use('/api/resep', router);
 };

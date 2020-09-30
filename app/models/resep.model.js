@@ -2,11 +2,7 @@ module.exports = mongoose => {
     var schema = mongoose.Schema(
         {
             title: String,
-            description: String,
-            img: {
-                data: Buffer,
-                contentType: String
-            }
+            description: String
         }
     );
     schema.method("toJSON", function(){

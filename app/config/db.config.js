@@ -1,3 +1,3 @@
 module.exports = {
-    url: "mongodb://develop:555758@localhost:27017/resepbreef?authSource=admin"
+    url: "mongodb+srv://minitest:D3veloper@cluster0.yvp1d.gcp.mongodb.net/resep-breef?retryWrites=true&w=majority"
 };
